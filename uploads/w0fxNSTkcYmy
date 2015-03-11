@@ -1,0 +1,6 @@
+name,status,description,site,country_id,priority_id,responsible,responsible_date,categorization,documentation,procurement,procurement_ku,procurement_rr,procurement_er,imac_services,imac_ku,imac_rr,imac_er,support_services,support_ku,support_rr,team_id,level1_more,team2_id,level2_more,team3_id,level3_more,administration,administration_ku,administration_rr,administration_er,operation_order,oo_ku,oo_rr,oo_er,small_enhancement,sm_ku,global_comment,created_at,updated_at,created_by,updated_by,deleted_at
+drukarakac,sddsadsA,SADF HP LENOWVO,dsasda,2,2,,0000-00-00,,,,,,,,,,,,,,14,tylko instalacja,18,wymiana tonera,19,,,,,,,,,,,,,,,,,NULL
+drukaraka nowca drukara,sddsadsA,SADF HP LENOWVO,dsasda,2,2,,0000-00-00,,,,,,,,,,,,,,18,tylko instalacja,12,wymiana tonera,15,,,,,,,,,,,,,,,,,NULL
+drukaraka nowca drukara12,sddsadsA,SADF HP LENOWVO,dsasda,2,3,,0000-00-00,,,,,,,,,,,,,,15,tylko instalacja,12,wymiana tonera,15,,,,,,,,,,,,,,,,,NULL
+dfdsfdsfsdfccxzcxzcxzc,1,dsfsdfdsf,fdsfsdf,6,2,,0000-00-00,,,,,,,,,,,,,,19,,14,,12,,,,,,,,,,,,,,,,,NULL
+cccc,1,,,6,2,,0000-00-00,,,,,,,,,,,,,,14,,18,,15,,,,,,,,,,,,,,,,,NULL

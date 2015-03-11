@@ -1,0 +1,270 @@
+<?php
+
+class TeamController extends BaseController {
+     
+	public function __construct() {
+		$this->beforeFilter('csrf', array('on'=>'post'));
+	}
+
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return Response
+	 */
+	public function getIndex() {
+		return View::make('teams.index')
+			->with('teams', Team::all());
+	}
+
+	public function getShow($id) {
+		return View::make('teams.show')->with('team', Team::find($id));
+	}
+
+    public function table()
+	{		// get all the nerds
+		$teams = Team::all();
+
+		// load the view and pass the nerds
+        
+		return View::make('teams.table')
+			->with('teams', $teams);
+	
+	}
+
+	/**
+	 * Show the form for creating a new resource.
+	 *
+	 * @return Response
+	 */
+	public function getCreate() {
+		return View::make('teams.create');
+		
+	}
+
+
+	public function store() {
+		$validator = Validator::make(Input::all(), Team::$rules);
+
+		if ($validator->passes()) {
+			$team = new Team;
+			$team->Team       = Input::get('Team');
+			$team->TeamStatus      = Input::get('TeamStatus');
+			$team->TeamDescription = Input::get('TeamDescription');
+			$team->TeamSL       = Input::get('TeamSL');
+			$team->TeamCust      = Input::get('TeamCust');
+			$team->TeamTimeTable = Input::get('TeamTimeTable');
+
+			$team->TeamPhone      = Input::get('TeamPhone');
+			$team->TeamConstraintPhone      = Input::get('TeamConstraintPhone');
+			$team->TeamEmail = Input::get('TeamEmail');
+			$team->TeamFree1       = Input::get('TeamFree1');
+			$team->EFree      = Input::get('EFree');
+
+			$team->EL1TL = Input::get('EL1TL');
+			$team->EL1Phone      = Input::get('EL1Phone');
+			$team->EL1Cell      = Input::get('EL1Cell');
+			$team->EL1Email1 = Input::get('EL1Email1');
+			$team->EL1Email2       = Input::get('EL1Email2');
+			$team->EL1Comments     = Input::get('EL1Comments');
+
+			$team->EL2TL = Input::get('EL2TL');
+			$team->EL2Phone      = Input::get('EL2Phone');
+			$team->EL2Cell      = Input::get('EL2Cell');
+			$team->EL2Email1 = Input::get('EL2Email1');
+			$team->EL2Email2       = Input::get('EL2Email2');
+			$team->EL2Comments     = Input::get('EL2Comments');
+
+			$team->EL3TL = Input::get('EL3TL');
+			$team->EL3Phone      = Input::get('EL3Phone');
+			$team->EL3Cell      = Input::get('EL3Cell');
+			$team->EL3Email1 = Input::get('EL3Email1');
+			$team->EL3Email2       = Input::get('EL3Email2');
+			$team->EL3Comments     = Input::get('EL3Comments');
+
+			$team->Comments     = Input::get('Comments');
+			$team->save();
+
+			return Redirect::to('admin/team/index')
+				->with('message', 'Team Added');
+		}
+
+		return Redirect::to('admin/team/create')
+			->with('message', 'Opps something went wrong')
+			->withErrors($validator)
+			->withInput();
+	}
+	public function create()
+	{
+		return View::make('teams.create');
+	}
+
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @return Response
+	 */
+	public function store()
+	{
+		
+		
+		$validator = Validator::make(Input::all(), Team::$rules);
+
+		// process the login
+		if ($validator->fails()) {
+			return Redirect::to('admin/teams/create')
+				->withErrors($validator)
+				->withInput();
+		} else {
+			// store
+			$team = new Team;
+			$team->Team       = Input::get('Team');
+			$team->TeamStatus      = Input::get('TeamStatus');
+			$team->TeamDescription = Input::get('TeamDescription');
+			$team->TeamSL       = Input::get('TeamSL');
+			$team->TeamCust      = Input::get('TeamCust');
+			$team->TeamTimeTable = Input::get('TeamTimeTable');
+
+			$team->TeamPhone      = Input::get('TeamPhone');
+			$team->TeamConstraintPhone      = Input::get('TeamConstraintPhone');
+			$team->TeamEmail = Input::get('TeamEmail');
+			$team->TeamFree1       = Input::get('TeamFree1');
+			$team->EFree      = Input::get('EFree');
+
+			$team->EL1TL = Input::get('EL1TL');
+			$team->EL1Phone      = Input::get('EL1Phone');
+			$team->EL1Cell      = Input::get('EL1Cell');
+			$team->EL1Email1 = Input::get('EL1Email1');
+			$team->EL1Email2       = Input::get('EL1Email2');
+			$team->EL1Comments     = Input::get('EL1Comments');
+
+			$team->EL2TL = Input::get('EL2TL');
+			$team->EL2Phone      = Input::get('EL2Phone');
+			$team->EL2Cell      = Input::get('EL2Cell');
+			$team->EL2Email1 = Input::get('EL2Email1');
+			$team->EL2Email2       = Input::get('EL2Email2');
+			$team->EL2Comments     = Input::get('EL2Comments');
+
+			$team->EL3TL = Input::get('EL3TL');
+			$team->EL3Phone      = Input::get('EL3Phone');
+			$team->EL3Cell      = Input::get('EL3Cell');
+			$team->EL3Email1 = Input::get('EL3Email1');
+			$team->EL3Email2       = Input::get('EL3Email2');
+			$team->EL3Comments     = Input::get('EL3Comments');
+
+			$team->Comments     = Input::get('Comments');
+			$team->save();
+
+
+		
+			// redirect
+			Session::flash('message', 'Successfully created Team!');
+			return Redirect::to('admin/teams/index');
+		}
+	}
+
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+
+
+	/**
+	 * Show the form for editing the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+
+
+	public function getEdit($id) {
+		return View::make('teams.edit')->with('team', Team::find($id));
+	}
+
+	public function update($id) {
+		$team = Team::find(Input::get('id'));
+
+
+		if ($team) {
+			$team = Team::find($id);
+			$team->Team       = Input::get('Team');
+			$team->TeamStatus      = Input::get('TeamStatus');
+			$team->TeamDescription = Input::get('TeamDescription');
+			$team->TeamSL       = Input::get('TeamSL');
+			$team->TeamCust      = Input::get('TeamCust');
+			$team->TeamTimeTable = Input::get('TeamTimeTable');
+
+			$team->TeamPhone      = Input::get('TeamPhone');
+			$team->TeamConstraintPhone      = Input::get('TeamConstraintPhone');
+			$team->TeamEmail = Input::get('TeamEmail');
+			$team->TeamFree1       = Input::get('TeamFree1');
+			$team->EFree      = Input::get('EFree');
+
+			$team->EL1TL = Input::get('EL1TL');
+			$team->EL1Phone      = Input::get('EL1Phone');
+			$team->EL1Cell      = Input::get('EL1Cell');
+			$team->EL1Email1 = Input::get('EL1Email1');
+			$team->EL1Email2       = Input::get('EL1Email2');
+			$team->EL1Comments     = Input::get('EL1Comments');
+
+			$team->EL2TL = Input::get('EL2TL');
+			$team->EL2Phone      = Input::get('EL2Phone');
+			$team->EL2Cell      = Input::get('EL2Cell');
+			$team->EL2Email1 = Input::get('EL2Email1');
+			$team->EL2Email2       = Input::get('EL2Email2');
+			$team->EL2Comments     = Input::get('EL2Comments');
+
+			$team->EL3TL = Input::get('EL3TL');
+			$team->EL3Phone      = Input::get('EL3Phone');
+			$team->EL3Cell      = Input::get('EL3Cell');
+			$team->EL3Email1 = Input::get('EL3Email1');
+			$team->EL3Email2       = Input::get('EL3Email2');
+			$team->EL3Comments     = Input::get('EL3Comments');
+
+
+			$team->Comments     = Input::get('Comments');
+			$team->save();
+
+			return Redirect::to('admin/teams/index')
+				->with('message', 'Team updated');
+		}
+
+		return Redirect::to('admin/teams/' . $id . '/edit')
+			->with('message', 'Opps something went wrong');
+
+	}	
+
+
+
+
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+
+
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function postDestroy()
+	{
+		$team = Team::find(Input::get('id'));
+
+		if ($team) {
+			$team->delete();
+			return Redirect::to('admin/teams/index')
+				->with('message', 'Team deleted');
+		}
+
+		return Redirect::to('admin/teams/index')
+			->with('message', 'Opps something went wrong');
+    }
+
+
+}
