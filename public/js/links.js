@@ -8,7 +8,7 @@ function renderLinks(url) {
 			$('#links-table').append(data['html']);
 
 		} else {
-			$('#links-table').append('<div class="alert alert-info">There are no links to show yet. Please create some.</div>');
+			$('#links-table').append('<div class="alert alert-info">There are no links to show yet1. Please create some.</div>');
 
 		}
 		});
