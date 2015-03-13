@@ -19,6 +19,7 @@
                     <li><a id="" class="" href="{{ URL::to('admin/teams') }}">Teams</a>
                     <li><a id="" class="" href="{{ URL::to('admin/links') }}">Links</a>
                     <li><a id="" class="" href="{{ URL::to('mylinks/' .Auth::user()->firstname) }}">My Links</a>
+                    <li><a id="" class="" href="{{ URL::to('myassets/' .Auth::user()->email) }}">My sdAssets</a>    
                     @if(Auth::user()->admin == 1)
                     <li><a id="" class="" href="{{ URL::to('admin/countries') }}">Countries</a>
                     <li><a id="" class="" href="{{ URL::to('admin/priorities') }}">Priorities</a>

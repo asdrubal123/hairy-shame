@@ -17,6 +17,7 @@
       <li>{{ HTML::link('applications', 'Applications') }}</li>
       <li>{{ HTML::link('assets', 'Assets') }}</li>
       <li>{{ HTML::link('teams', 'Team Directory') }}</li>
+      <li>{{ HTML::link('sdassets/computers', 'sdAssets') }}</li>
 
 
     </ul>

@@ -34,6 +34,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 			return $this->belongsToMany('Link', 'user_link');
 	}
 
+	public function computers() {
+		return $this->hasMany('Computer');
+	}
+
+
 	/**
 	 * Get the unique identifier for the user.
 	 *

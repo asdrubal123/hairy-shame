@@ -40,6 +40,15 @@ Route::get('admin/applications/api/datatable', array('as'=>'admin.applications.a
 Route::get('admin/applications/trash', 'ApplicationController@getSoftDeleted');
 Route::post('admin/applications/restore/{id}', 'ApplicationController@restore');
 
+Route::get('sdassets/computers/dropdown', ['as' =>'computers.dropdown', 'uses' => 'ComputerController@dropdown']);
+Route::get('sdassets/computers/all', ['as' => 'computers.all', 'uses' => 'ComputerController@all']);
+Route::post('sdassets/computers/store', ['as' => 'computers.store', 'uses' => 'ComputerController@store']);
+Route::delete('sdassets/computers/{id}', ['as' => 'computers.destroy', 'uses' => 'ComputerController@destroy']);
+Route::get('sdassets/computers', ['as' => 'computers.index', 'uses' => 'ComputerController@getIndex']);
+Route::get('sdassets/computers/{id}/edit', ['as' => 'computers.edit', 'uses' => 'ComputerController@edit']);
+Route::put('sdassets/computers/{id}', ['as' => 'computers.update', 'uses' => 'ComputerController@update']);
+Route::get('myassets/{username}', 'ComputerController@getAssets' );
+
 
 Route::get('admin/links/all', ['as' => 'admin.links.all', 'uses' => 'LinkController@all']);
 Route::post('admin/links/store', ['as' => 'admin.links.store', 'uses' => 'LinkController@store']);
@@ -155,3 +164,4 @@ Route::get('test', function(){
         print_r('<li>' . $value->name . '</li>');
     }
 });
+
