@@ -4,9 +4,9 @@ class OwnershipColor {
 
 
 	public static function displayClass($owner) {
-		if ($owner == 0) {
+		if ($owner == 'Capgemini') {
 			echo "owner0";
-		} else if ($owner == 1) {
+		} else if ($owner == 'Schneider') {
 			echo "owner1";
 		} 
 	

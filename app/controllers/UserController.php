@@ -13,7 +13,7 @@ class UserController extends BaseController {
     $pages = 10;
 
   
-    $users = User::paginate($pages);
+    $users = User::all();
 
     $html = View::make('users.list', compact('users'))->render();
     
@@ -24,7 +24,7 @@ class UserController extends BaseController {
       //->with('users', User::all());
   }
 
-  public function postCreate() {
+  public function store() {
     $validator = Validator::make(Input::all(), User::$rules);
 
     if ($validator->passes()) {
@@ -36,14 +36,15 @@ class UserController extends BaseController {
       $user->admin = Input::get('admin');
       $user->save();
 
-      return Redirect::to('admin/users/index')
-        ->with('message', 'User Added');
-    }
+      $data['status'] = true;
+      $data['message'] = 'User added!';
+    } else {
 
-    return Redirect::to('admin/users/index')
-      ->with('message', 'Opps something went wrong')
-      ->withErrors($validator)
-      ->withInput();
+      $errors = $validator->messages();
+      $data['errors'] = implode('', $errors->all('<ul><li>:message</li></ul>'));
+      $data['status'] = false;
+    }
+    return Response::json($data);
   }
 
   public function postEdit() {

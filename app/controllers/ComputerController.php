@@ -5,7 +5,7 @@ class ComputerController extends BaseController {
 	public function __construct() {
 		parent::__construct();
 		$this->beforeFilter('csrf', array('on'=>'post'));
-		$this->beforeFilter('admin');
+		//$this->beforeFilter('admin');
 	}
 
 	public function all() {
@@ -15,7 +15,7 @@ class ComputerController extends BaseController {
 		$pages = 10;
 
 	
-		$computers = Computer::paginate($pages);
+		$computers = Computer::orderBy('updated_at', 'DESC')->paginate($pages);
 
 		$html = View::make('computers.list', compact('computers'))->render();
 		
@@ -43,7 +43,7 @@ class ComputerController extends BaseController {
 
 	public function getAssets($username){
 
-    $user = User::where('email', Auth::user()->email)->firstOrFail();
+    $user = User::where('email', $username)->firstOrFail();
 
 
 
@@ -106,14 +106,19 @@ class ComputerController extends BaseController {
 		foreach(Maker::all() as $maker) {
 			$makers[$maker->id] = $maker->name;
 		}
+		$user = $computer->user ? $computer->user->id : '?';
+		
 
-		$html = View::make('computers.edit')->with('computer', $computer)->with('users', $users)->with('makers', $makers)->render();
+		$html = View::make('computers.edit')->with('computer', $computer)->with('users', $users)->with('user', $user)->render();
 		
 		return Response::json(['html' => $html]);
 	}
 	public function update($id) {
 
 		$computer = Computer::find($id);
+
+
+
 
 		$validator = Validator::make(Input::all(), Computer::$rules);
 

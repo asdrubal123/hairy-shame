@@ -128,3 +128,8 @@ body 							{ margin-top:0px; padding-top: 70px; background: url(../img/box-whit
 .type4 {}
 .type5 {}
 .type6 {}
+
+.big-icon {
+    font-size: 6em;
+}
+#bootstripped .input-mysize { width: 120px }

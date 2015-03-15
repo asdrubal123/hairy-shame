@@ -61,7 +61,7 @@ Route::controller('admin/countries', 'CountryController');
 Route::controller('admin/priorities', 'PriorityController');
 
 Route::get('admin/users/all', ['as' => 'admin.users.all', 'uses' => 'UserController@all']);
-
+Route::post('admin/users/store', ['as' => 'admin.users.store', 'uses' => 'UserController@store']);
 Route::get('admin/users', ['as' => 'users.index', 'uses' => 'UserController@getIndex']);
 
 Route::controller('admin/users', 'UserController');

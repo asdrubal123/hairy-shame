@@ -74,7 +74,56 @@ $('#make').change(function(){
 		});
 		});
 }); 
+// Devuelve el valor de un parámetro de la URL
+function getURLParameter(url, parameter) {
+	var pos = url.indexOf(parameter);
+	if (pos === -1) {
+		return false;
+	}
+	pos += parameter.length + 1;
+	substr = url.substr(pos);
+	end = substr.indexOf('&');
+	if (end === -1) {
+		return substr;
+	}
+	return substr.substr(0, end);
+}
 
+// Devuelve una URL con la anterior página
+function previousPageURL(url, parameter) {
+	var pos = url.indexOf(parameter);
+	if (pos === -1) {
+		return false;
+	}
+	pos += parameter.length + 1;
+	substr = url.substr(pos);
+	end = substr.indexOf('&');
+	page_value = (end === -1) ? substr : substr.substr(0, end);
+	end += pos + page_value.length;
+	first_chunk = url.substr(0, pos);
+	last_chunk = url.substr(end + 1, url.length);
+	prev_page = parseInt(page_value) - 1;
+	prev_page_url = first_chunk + prev_page + last_chunk;
+	return prev_page_url;
+}
+
+// Devuelve una URL con la siguiente página
+function nextPageURL(url, parameter) {
+	var pos = url.indexOf(parameter);
+	if (pos === -1) {
+		return false;
+	}
+	pos += parameter.length + 1;
+	substr = url.substr(pos);
+	end = substr.indexOf('&');
+	page_value = (end === -1) ? substr : substr.substr(0, end);
+	end += pos + page_value.length;
+	first_chunk = url.substr(0, pos);
+	last_chunk = url.substr(end + 1, url.length);
+	next_page = parseInt(page_value) + 1;
+	next_page_url = first_chunk + next_page + last_chunk;
+	return next_page_url;
+}
 
 // delete link
 $(document).on('click', '.glyphicon-trash', function(event) {
@@ -98,7 +147,7 @@ $(document).on('click', '.glyphicon-trash', function(event) {
 					if (!executed) {
 					thiz.closest('td').remove();
 					if ($('.table > tbody > tr').length > 1) {
-						renderComputers();
+						renderComputers(curPage);
 					} 
 					executed = true;
 				}
@@ -133,7 +182,7 @@ $(document).on('click', '.glyphicon-floppy-disk', function(event) {
 		if (data['status']) {
 			$(this).closest('tr').find('td').delay('400', function() {
 
-				renderLinks();
+				renderComputers(curPage);
 			});
 			$('#info-errors').addClass('hidden');
 			$('#info-success').removeClass('hidden');
@@ -149,6 +198,9 @@ $(document).on('click', '.glyphicon-floppy-disk', function(event) {
 // cancel edit
 $(document).on('click', '.glyphicon-ban-circle', function(event) {
 	$(this).closest('tr').find('td').delay('400', function() {
-		renderComputers();
+		renderComputers(curPage);
 	});
 });
+
+$('.combobox').combobox();
+

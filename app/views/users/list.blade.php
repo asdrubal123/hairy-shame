@@ -1,6 +1,6 @@
 	@if(isset($users))
 	{{ Form::open(['id' => 'edit-users-form']) }}
-	<table class="table table-striped table-responsive">
+	<table id="bootstripped" class="table table-striped table-responsive">
 		<thead>
 			<tr>
 				<th>Firstname</th>
@@ -45,5 +45,11 @@
 		</tbody>
 	</table>
 	{{ Form::close() }}
-	{{ $users->links() }}
+	<script>
+	$(document).ready(function() {
+    $('#bootstripped').dataTable();
+	} );
+	</script>
+
+
 	 @endif

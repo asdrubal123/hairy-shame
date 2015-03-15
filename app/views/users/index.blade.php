@@ -22,7 +22,7 @@
 
 
 	
-		{{ Form::open(array('url'=>'admin/users/create', 'class'=>'', 'id'=>'create-user-form')) }}
+		{{ Form::open(array('class'=>'', 'id'=>'create-user-form')) }}
 			<div class="form-group">
 
 			{{ Form::text('firstname', '', array('class' => 'form-control', 'placeholder'=>'Firstname')) }}

@@ -15,7 +15,7 @@
 		<div id="info-success" class="alert alert-info hidden"></div>
 
 
-    	<div class="col-md-4">
+    	<div class="col-md-3">
 		<h2>Add new</h2>
 
 
@@ -60,7 +60,7 @@
 		</div>
 		<div class="form-group">
 			{{ Form::label('comments', 'Comments') }}
-			{{ Form::textarea('comments','', array('class' => 'form-control')) }}
+			{{ Form::textarea('comments','', array('class' => 'form-control', 'rows' => '4')) }}
 
 		</div>
 
@@ -71,7 +71,7 @@
 	
 
 		</div>
-		<div class="col-md-8" id="computers-table">
+		<div class="col-md-9" id="computers-table">
         @include('computers.list')
     	</div>
 	</div><!--end admin-->
